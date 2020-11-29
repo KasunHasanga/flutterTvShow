@@ -14,14 +14,14 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   List<ShowModel> shows = [];
 
-  @override
-  void initState() {
-    super.initState();
-    getShows();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   getShows();
+  // }
 
-  void getShows() async {
-    final result = await ShowConnector.getShows();
+  void getShows(String searchPhrase) async {
+    final result = await ShowConnector.getShows(searchPhrase);
     setState(() {
       shows = result;
     });
@@ -43,12 +43,19 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: TextField(
+          decoration: InputDecoration(
+            hintText: 'Search shows',
+            prefixIcon: Icon(Icons.search),
+          ),
+          onChanged: (String str){
+            getShows(str);
+          },
+        ),
       ),
       body: Center(
         child: ListView(
           children: getListViewCells(),
-
         ),
       ),
     );
