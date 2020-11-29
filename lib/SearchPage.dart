@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tv_show_app/ShowCell.dart';
 import 'package:tv_show_app/ShowConnector.dart';
-import 'package:tv_show_app/ShowModel.dart';
+import 'package:tv_show_app/Model/ShowModel.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key key, this.title}) : super(key: key);
@@ -21,11 +21,10 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   void getShows() async {
-    final result= await ShowConnector.getShows();
+    final result = await ShowConnector.getShows();
     setState(() {
-      shows =result;
+      shows = result;
     });
-
   }
 
   getListViewCells() {
@@ -47,7 +46,10 @@ class _SearchPageState extends State<SearchPage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: ListView(children: getListViewCells(),),
+        child: ListView(
+          children: getListViewCells(),
+
+        ),
       ),
     );
   }

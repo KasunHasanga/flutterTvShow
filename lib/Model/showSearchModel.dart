@@ -1,6 +1,6 @@
 
 
-import 'package:tv_show_app/ShowModel.dart';
+import 'package:tv_show_app/Model/ShowModel.dart';
 
 class SearchShowModel {
   ShowModel show;
